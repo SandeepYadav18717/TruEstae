@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Logo from "./Logo.jsx";
-import InputBar from "../components/search_bar.jsx";
+import InputBar from "../Components/search_bar.jsx";
 import "../Styles/Home.css";
 import Table from "./Table.jsx";
 
