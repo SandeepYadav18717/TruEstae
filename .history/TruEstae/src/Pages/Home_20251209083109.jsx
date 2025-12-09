@@ -1,0 +1,203 @@
+import { useState, useEffect } from "react";
+import Logo from "./Logo.jsx";
+import InputBar from "../components/search_bar.jsx";
+import "../Styles/Home.css";
+import Table from "./Table.jsx";
+
+function Home() {
+  const [filters, setFilters] = useState({
+    region: "",
+    gender: "",
+    age: "",
+    category: "",
+    tags: "",
+    payment: "",
+    date: "",
+    sortBy: "",
+    page: 1,
+    limit: 10,
+  });
+
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  // ⭐⭐⭐ SEARCH FUNCTION (with loading FIXED) ⭐⭐⭐
+  const handleSearch = async (query) => {
+    setLoading(true); // loader start
+    console.log("SEARCH QUERY:", query);
+
+    try {
+      const res = await fetch("http://localhost:8000/search-name-phone", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query }),
+      });
+
+      const result = await res.json();
+      console.log("SEARCH RESULT:", result);
+
+      setData(result); // update table with search result
+    } catch (err) {
+      console.error("Search Error:", err);
+    }
+
+    setLoading(false); // loader stop
+  };
+
+  // FILTER HANDLER (pagination reset)
+  function Page(e) {
+    const { id, value } = e.target;
+    setFilters((prev) => ({ ...prev, [id]: value, page: 1 }));
+  }
+
+  // ⭐⭐⭐ FETCH FILTERED DATA ⭐⭐⭐
+  useEffect(() => {
+    async function fetchData() {
+      setLoading(true);
+
+      try {
+        const res = await fetch("http://localhost:8000/get-data", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(filters),
+        });
+
+        const result = await res.json();
+        setData(result);
+      } catch (err) {
+        console.error("Fetch Error:", err);
+      }
+
+      setLoading(false);
+    }
+
+    fetchData();
+  }, [filters]);
+
+  return (
+    <>
+      <div className="topBar">
+        <Logo />
+
+        {/* ⭐⭐⭐ Search bar now fully working ⭐⭐⭐ */}
+        <InputBar onSearch={handleSearch} />
+      </div>
+
+      <div className="Container_Ui">
+        <div id="Customer_Region">
+          <select id="region" onChange={Page}>
+            <option hidden>Region</option>
+            <option>Central</option>
+            <option>North</option>
+            <option>South</option>
+            <option>East</option>
+            <option>West</option>
+          </select>
+        </div>
+
+        <div id="Gender">
+          <select id="gender" onChange={Page}>
+            <option hidden>Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+        </div>
+
+        <div id="Age">
+          <select id="age" onChange={Page}>
+            <option hidden>Age</option>
+            <option>18-25</option>
+            <option>26-35</option>
+            <option>36-50</option>
+            <option>50+</option>
+          </select>
+        </div>
+
+        <div id="Product_Category">
+          <select id="category" onChange={Page}>
+            <option hidden>Product Category</option>
+            <option>Beauty</option>
+            <option>Electronic</option>
+            <option>Clothing</option>
+          </select>
+        </div>
+
+        <div id="Tags">
+          <select id="tags" onChange={Page}>
+            <option hidden>Tags</option>
+
+            <option>skincare</option>
+            <option>beauty</option>
+            <option>fashion</option>
+            <option>organic</option>
+            <option>fragrance-free</option>
+            <option>portable</option>
+            <option>smart</option>
+            <option>gadgets</option>
+            <option>makeup</option>
+            <option>accessories</option>
+            <option>cotton</option>
+            <option>unisex</option>
+            <option>formal</option>
+          </select>
+        </div>
+
+        <div id="Payment_Method">
+          <select id="payment" onChange={Page}>
+            <option hidden>Payment Method</option>
+            <option>Wallet</option>
+            <option>Cash</option>
+            <option>Card</option>
+            <option>UPI</option>
+            <option>Net Banking</option>
+          </select>
+        </div>
+
+        <div id="Date">
+          <input id="date" type="date" onChange={Page} />
+        </div>
+
+        <div id="SortBy">
+          <select id="sortBy" onChange={Page}>
+            <option hidden>Sort by</option>
+            <option value="name-asc">Customer Name (A-Z)</option>
+            <option value="name-desc">Customer Name (Z-A)</option>
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+          </select>
+        </div>
+      </div>
+
+      {/* ⭐⭐⭐ LOADER ⭐⭐⭐ */}
+      {loading && <h2>Loading...</h2>}
+
+      {/* ⭐⭐⭐ SHOW TABLE WHEN NOT LOADING ⭐⭐⭐ */}
+      {!loading && <Table data={data} />}
+
+      {/* PAGINATION */}
+      <div>
+        <button
+          disabled={filters.page === 1}
+          onClick={() =>
+            setFilters((prev) => ({ ...prev, page: prev.page - 1 }))
+          }
+        >
+          Prev
+        </button>
+
+        <span>Page {filters.page}</span>
+
+        <button
+          disabled={data.length < filters.limit}
+          onClick={() =>
+            setFilters((prev) => ({ ...prev, page: prev.page + 1 }))
+          }
+        >
+          Next
+        </button>
+      </div>
+    </>
+  );
+}
+
+export default Home;

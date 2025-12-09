@@ -1,0 +1,84 @@
+Technologies and Concepts Used in Our Project
+
+1. HTML (HyperText Markup Language)
+
+HTML is used to create the basic structure of the user interface.
+It defines elements such as tables, buttons
+
+2. CSS (Cascading Style Sheets)
+
+CSS is used to style and design our frontend.
+It helps in:
+
+Improving UI/UX
+
+Making the application responsive
+
+Adding colors, spacing, animations, and layout control
+
+3. React (Frontend Framework)
+
+React is used for building dynamic and interactive user interfaces. We use React because:
+
+It updates the UI instantly without reloading the page
+
+It makes components reusable
+
+It handles large data efficiently
+
+It creates a smooth, fast experience for the user
+
+React is ideal for applications where data changes frequently, such as sorting, searching, or filtering.
+
+4. Python (Backend Programming Language)
+
+Python is used in the backend because it is:
+
+Easy to write and maintain
+
+Powerful for data processing
+
+Highly suitable for working with large datasets, CSV files, and sorting algorithms
+
+Python also supports libraries like Pandas, which help us read, clean, sort, and process data efficiently.
+
+5. FastAPI (Backend Framework)
+
+FastAPI is used to create fast and efficient APIs.
+It offers:
+
+High performance
+
+Automatic documentation
+
+Easy integration with frontend
+
+Asynchronous processing for speed
+
+React calls the FastAPI backend to get sorted or processed data.
+
+6. Data Structures (Core Logic Implementation)
+
+Data structures and algorithms are used to implement the sorting and searching mechanisms inside the backend.
+
+For example:
+
+Why Merge Sort?
+
+It gives consistent performance: O(n log n)
+
+Works better with large datasets
+
+Stable sorting algorithm
+
+Used in real search engines and databases
+
+Using data structures improves:
+
+Performance
+
+Accuracy
+
+Scalability
+
+

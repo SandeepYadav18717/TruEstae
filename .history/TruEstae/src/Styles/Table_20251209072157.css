@@ -1,0 +1,73 @@
+.table {
+  width: 100%;
+  margin: 20px auto;
+  overflow-x: auto;       
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background: #fff;
+}
+
+
+.table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+
+.table thead {
+  background: #4b7bec;
+  color: white;
+}
+
+.table th {
+  padding: 10px;
+  text-align: left;
+  white-space: nowrap;
+  font-weight: bold;
+  border-bottom: 2px solid #dcdcdc;
+  position: sticky;
+  top: 0;                   /* Makes header sticky */
+  background: #4b7bec;
+  z-index: 10;
+}
+
+/* Table body rows */
+.table td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  white-space: nowrap;
+}
+
+/* Row hover effect */
+.table tbody tr:hover {
+  background: #f4f6ff;
+  transition: 0.2s;
+}
+
+/* Zebra-striping */
+.table tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* Responsive text wrap for long data */
+.table td, .table th {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Scrollbar styling (optional, modern look) */
+.table::-webkit-scrollbar {
+  height: 8px;
+}
+
+.table::-webkit-scrollbar-thumb {
+  background: #b3b3b3;
+  border-radius: 10px;
+}
+
+.table::-webkit-scrollbar-track {
+  background: #eee;
+}

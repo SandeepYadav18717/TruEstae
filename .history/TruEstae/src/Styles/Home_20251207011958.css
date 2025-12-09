@@ -1,0 +1,50 @@
+.Container_Ui {
+  display: flex;
+  gap:50px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #eff6f1;
+  height:60px;
+  width: 100%;
+  border-radius: 5%;
+}
+
+/* All dropdowns */
+select {
+  width: 100%;
+  hei
+ 
+  border-radius: 12px;       /* curved corners */
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 16px;
+  outline: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* Dropdown hover effect */
+select:hover {
+  border-color: #4a6cf7;
+  box-shadow: 0 0 8px rgba(74, 108, 247, 0.2);
+}
+
+/* Date input curved */
+input[type="date"] {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;       /* curved corners */
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 16px;
+  outline: none;
+  transition: 0.2s;
+}
+
+/* Hover effect for date input */
+input[type="date"]:hover {
+  border-color: #4a6cf7;
+  box-shadow: 0 0 8px rgba(74, 108, 247, 0.2);
+}

@@ -1,0 +1,11 @@
+.Container_Ui {
+  display: flex;
+  gap:15px;
+  flex-direction: Row;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #eff6f1;
+  height:100px;
+  width: 100%;
+}
